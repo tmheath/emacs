@@ -1,15 +1,16 @@
 ;; MELPA
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+(add-to-list 'package-archives '("nongnu" . "https://elpa.nongnu.org/nongnu/org-contrib") t)
 (package-initialize)
-
+(setq warning-minimum-level :error)
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(emojify selectric-mode treemacs minimap beacon sly consult marginalia vertico magit use-package)))
+   '(gforth gforth-mode robe ruby-end haskell-mode geiser go-mode elpy cider lua-mode fennel-mode cargo rust-mode tex-site auctex AUCTeX org-bookmark-heading org-bookmark org-web-tools org-sticky-header helm-org-recent-headings helm-org-rifle org-super-agenda ox-pandoc org-page org-bullets org-protocol-capture org-protocol helm f org-roam org-present emojify selectric-mode treemacs minimap beacon sly consult marginalia vertico magit use-package)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -201,7 +202,7 @@
   :ensure t)
 (selectric-mode 1)
 
-;; Emoji :smile:
+;; Emoji
 (use-package emojify
   :ensure t
   :hook (after-init . global-emojify-mode))
@@ -215,5 +216,120 @@
 ;; Remove Tool Bar
 (tool-bar-mode -1)
 
+;; Remove scroll bars
+(scroll-bar-mode -1)
+
 ;; Show Line Numbers
-(display-line-numbers-mode 1)
+;TODO Make this a hook when new windows are created by the user, not the sidemap ;(display-line-numbers-mode 1)
+(setq inhibit-startup-message t)
+(setq initial-scratch-message nil)
+(setq visible-bell t)
+
+(use-package s
+  :ensure t)
+
+(use-package f
+  :ensure t)
+
+(use-package dash
+  :ensure t)
+
+(use-package helm
+  :ensure t)
+
+(use-package org
+  :ensure t)
+
+;; (use-package org-protocol
+;;   :ensure t)
+
+;; (use-package org-protocol-capture
+;;   :ensure t)
+
+(use-package org-present
+  :ensure t)
+
+(use-package org-present
+  :ensure t)
+
+(use-package org-roam
+  :ensure t)
+
+(use-package org-bullets
+  :ensure t)
+
+(use-package org-mouse) ; Built in to org
+
+(use-package org-page
+  :ensure t)
+
+(use-package ox-pandoc
+  :ensure t)
+
+(use-package org-super-agenda
+  :ensure t)
+
+(use-package helm-org-rifle
+  :ensure t)
+
+(use-package helm-org-recent-headings
+  :ensure t)
+
+(use-package org-sticky-header
+  :ensure t)
+
+(use-package org-web-tools
+  :ensure t)
+
+;; (use-package org-bookmark
+;;   :ensure t)
+
+(use-package org-bookmark-heading
+  :ensure t)
+
+(require 'tex-site)
+(recentf-mode 1)
+(setq history-length 25)
+(savehist-mode 1)
+(save-place-mode 1)
+
+(use-package rust-mode
+  :ensure t)
+(setq rust-format-on-save t)
+(use-package cargo
+  :ensure t)
+
+(use-package lua-mode
+  :ensure t)
+
+(use-package fennel-mode
+  :ensure t)
+(add-to-list 'auto-mode-alist '("\\.fnl\\'" . fennel-mode))
+(use-package antifennel) ; Included in fennel-mode package
+(add-hook 'lua-mode-hook 'antifennel-mode) ; C-c C-f in lua mode to convert to fennel
+
+(use-package cider
+  :ensure t)
+
+(use-package geiser
+  :ensure t)
+
+(use-package elpy
+  :ensure t
+  :hook (after-init . elpy-enable))
+
+(use-package go-mode
+  :ensure t)
+
+(use-package ruby-end
+  :ensure t) ; run along builtin ruby mode to automatically insert end statements
+(use-package robe
+  :ensure t)
+(add-hook 'ruby-mode-hook 'robe-mode)
+
+(use-package haskell-mode
+  :ensure t)
+
+(autoload 'forth-mode "gforth.el")
+(autoload 'forth-block-mode "gforth.el")
+(add-to-list 'auto-mode-alist '("\\.fs$" . forth-mode))
