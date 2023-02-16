@@ -10,7 +10,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(gforth gforth-mode robe ruby-end haskell-mode geiser go-mode elpy cider lua-mode fennel-mode cargo rust-mode tex-site auctex AUCTeX org-bookmark-heading org-bookmark org-web-tools org-sticky-header helm-org-recent-headings helm-org-rifle org-super-agenda ox-pandoc org-page org-bullets org-protocol-capture org-protocol helm f org-roam org-present emojify selectric-mode treemacs minimap beacon sly consult marginalia vertico magit use-package)))
+   '(lsp-scheme lsp-latex gforth gforth-mode robe ruby-end haskell-mode geiser go-mode elpy cider lua-mode fennel-mode cargo rust-mode tex-site auctex AUCTeX org-bookmark-heading org-bookmark org-web-tools org-sticky-header helm-org-recent-headings helm-org-rifle org-super-agenda ox-pandoc org-page org-bullets org-protocol-capture org-protocol helm f org-roam org-present emojify selectric-mode treemacs minimap beacon sly consult marginalia vertico magit use-package)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -198,9 +198,10 @@
   :ensure t)
 
 ;; Selectric
-(use-package selectric-mode
-  :ensure t)
-(selectric-mode 1)
+(unless (string-equal system-type "windows-nt")
+  (use-package selectric-mode
+    :ensure t)
+  (selectric-mode 1))
 
 ;; Emoji
 (use-package emojify
