@@ -330,6 +330,15 @@
 (use-package haskell-mode
   :ensure t)
 
+(use-package corfu
+  :ensure t)
+
+(use-package lsp-latex
+  :ensure t)
+
+(use-package lsp-scheme
+  :ensure t)
+
 (autoload 'forth-mode "gforth.el")
 (autoload 'forth-block-mode "gforth.el")
 (add-to-list 'auto-mode-alist '("\\.fs$" . forth-mode))
