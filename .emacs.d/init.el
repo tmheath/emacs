@@ -340,6 +340,9 @@
 (use-package lsp-scheme
   :ensure t)
 
+(use-package csv-mode
+  :ensure t)
+
 (autoload 'forth-mode "gforth.el")
 (autoload 'forth-block-mode "gforth.el")
 (add-to-list 'auto-mode-alist '("\\.fs$" . forth-mode))
